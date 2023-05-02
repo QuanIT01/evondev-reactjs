@@ -1,0 +1,17 @@
+import { useState } from "react";
+
+export function useHandleChange(initialValues) {
+  const [values, setValues] = useState(initialValues);
+  const handleChange = (e) => {
+    console.log(e.target.type);
+    const type = e.target.type;
+    setValues({
+      ...values,
+      [e.target.name]: type === "checkbox" ? e.target.checked : e.target.value,
+    });
+  };
+  return {
+    values,
+    handleChange,
+  };
+}
